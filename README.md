@@ -31,4 +31,6 @@ notice_seq
 	3) 글쓰기
 	4) 삭제
 	5) 수정
-	
+4. 순서
+1) DTO, DAO, MAPPER, TEST CASE 테스트 수행
+2) 수행 끝나면 SERVICE, CONTROLLER, JSP 만들어서 최종 연결
