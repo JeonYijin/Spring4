@@ -38,6 +38,10 @@
 			
 			</table>
 		
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="num">
+				<a href="./list?pn=${num}">${num}</a>
+			</c:forEach>
+		
 			<a href="./insert" class="btn btn-danger">ADD</a>
 		
 		</div>

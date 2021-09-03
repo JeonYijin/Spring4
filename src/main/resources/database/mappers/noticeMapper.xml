@@ -5,8 +5,12 @@
   
   <mapper namespace="com.ae.ae4.notice.NoticeDAO">
 	
-	<select id="getList" resultType="com.ae.ae4.notice.NoticeDTO">
-		SELECT * FROM NOTICE
+	<select id="getList" resultType="com.ae.ae4.notice.NoticeDTO" parameterType="com.ae.ae4.util.Pager">
+		SELECT * FROM
+			(select ROWNUM R, NT.* FROM
+				(select * from notice order by num desc)
+			NT)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
   
   	<select id="getSelect"  parameterType="com.ae.ae4.notice.NoticeDTO" resultType="com.ae.ae4.notice.NoticeDTO" >

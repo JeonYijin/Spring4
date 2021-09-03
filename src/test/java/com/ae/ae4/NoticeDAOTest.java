@@ -17,12 +17,13 @@ public class NoticeDAOTest extends MyJunitTest {
 	private NoticeDAO noticeDAO;
 	
 	//@Test
-	public void getListTest() {
-		
-	List<NoticeDTO> list = noticeDAO.getList();
-	assertNotEquals(0, list.size());
-	
-	}
+	/*
+	 * public void getListTest() {
+	 * 
+	 * List<NoticeDTO> list = noticeDAO.getList(); assertNotEquals(0, list.size());
+	 * 
+	 * }
+	 */
 	
 	//@Test
 	public void getSelectTest() {
