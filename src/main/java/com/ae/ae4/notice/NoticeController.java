@@ -55,4 +55,21 @@ public class NoticeController {
 		return "redirect: ./list";
 	}
 	
+	@RequestMapping(value="update", method = RequestMethod.GET)
+	public ModelAndView setUpdate(NoticeDTO noticeDTO) {
+		
+		noticeDTO = noticeService.getSelect(noticeDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("dto", noticeDTO);
+		mv.setViewName("/board/update");
+		return mv;
+		
+	}
+	@RequestMapping(value="update", method = RequestMethod.POST)
+	public ModelAndView setUpdate(NoticeDTO noticeDTO, ModelAndView mv) {
+		int result =noticeService.setUpdate(noticeDTO);
+		mv.setViewName("redirect:./list");
+		return mv;
+	}
+	
 }

@@ -35,7 +35,13 @@ notice_seq
 		/list 페이지로 이동
 		/title,contents,writer
 	4) 삭제
+	/select에서 번호 받아서 삭제하기 삭제한 후 리스트로 돌아가기
 	5) 수정
+	/notice/update 
+	/WEB-INF/views/board/update.jsp
+	/수정하고 난 후 list페이지로 이동
+	6) 페이징하기
+	
 4. 순서
 1) DTO, DAO, MAPPER, TEST CASE 테스트 수행
 2) 수행 끝나면 SERVICE, CONTROLLER, JSP 만들어서 최종 연결

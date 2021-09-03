@@ -2,6 +2,7 @@ package com.ae.ae4;
 
 import static org.junit.Assert.*;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -31,19 +32,41 @@ public class NoticeDAOTest extends MyJunitTest {
 		assertNotNull(noticeDTO);
 	}
 	
-	//@Test
-	public void setInsert() {
+	@Test
+	public void setInsert() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setTitle("QQ");
-		noticeDTO.setContents("qweuri");
-		noticeDTO.setWriter("q");
-		int result = noticeDAO.setInsert(noticeDTO);
-		assertEquals(1, result);
+		for(int i=0; i<200; i++) {
+			noticeDTO.setTitle("title"+i);
+			noticeDTO.setContents("contents"+i);
+			noticeDTO.setWriter("writer"+i);
+			int result = noticeDAO.setInsert(noticeDTO);
+			if(i%10==0) {
+				Thread.sleep(500);
+			}
+		}
+		System.out.println("===============");
+		
 	}
 	
-	@Test
+	//@Test
 	public void setDeleteTest() {
 		int result = noticeDAO.setDelete(42l);
 		assertEquals(1, result);
 	}
+	
+	//@Test
+	public void setUpdate() {
+		NoticeDTO noticeDTO = new NoticeDTO();
+		noticeDTO.setNum(1);
+		noticeDTO.setTitle("ag");
+		noticeDTO.setContents("adhec");
+		noticeDTO.setWriter("HI");
+		noticeDTO.setHits(1L);
+		
+		int result = noticeDAO.setUpdate(noticeDTO);
+		
+		assertEquals(1, result);
+	}
+	
+	
 }

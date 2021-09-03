@@ -22,4 +22,10 @@
   		DELETE NOTICE WHERE NUM=#{num}
   	</delete>
   
+  	<update id="setUpdate" parameterType="com.ae.ae4.notice.NoticeDTO">
+  		UPDATE NOTICE SET TITLE =#{title}, CONTENTS=#{contents}, WRITER=#{writer}, 
+  		REGDATE=sysdate WHERE NUM=#{num}
+  	</update>
+  
+  
   </mapper>

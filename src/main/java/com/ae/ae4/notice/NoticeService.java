@@ -26,4 +26,8 @@ public class NoticeService {
 	public int setDelete(Long num) {
 		return noticeDAO.setDelete(num);
 	}
+	
+	public int setUpdate(NoticeDTO noticeDTO) {
+		return noticeDAO.setUpdate(noticeDTO);
+	}
 }

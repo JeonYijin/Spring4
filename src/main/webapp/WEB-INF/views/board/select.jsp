@@ -35,6 +35,7 @@
 
 			</table>
 			<a href="./delete?num=${dto.num}">DELETE</a>
+			<a href="./update?num=${dto.num}">UPDATE</a>
 		</div>	
 	</div>
 
