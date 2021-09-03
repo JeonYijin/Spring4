@@ -34,6 +34,7 @@
 				</tr>
 
 			</table>
+			<a href="./delete?num=${dto.num}">DELETE</a>
 		</div>	
 	</div>
 

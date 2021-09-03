@@ -23,7 +23,7 @@ public class NoticeDAOTest extends MyJunitTest {
 	
 	}
 	
-	@Test
+	//@Test
 	public void getSelectTest() {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNum(21L);
@@ -31,4 +31,19 @@ public class NoticeDAOTest extends MyJunitTest {
 		assertNotNull(noticeDTO);
 	}
 	
+	//@Test
+	public void setInsert() {
+		NoticeDTO noticeDTO = new NoticeDTO();
+		noticeDTO.setTitle("QQ");
+		noticeDTO.setContents("qweuri");
+		noticeDTO.setWriter("q");
+		int result = noticeDAO.setInsert(noticeDTO);
+		assertEquals(1, result);
+	}
+	
+	@Test
+	public void setDeleteTest() {
+		int result = noticeDAO.setDelete(42l);
+		assertEquals(1, result);
+	}
 }

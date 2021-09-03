@@ -6,24 +6,53 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/notice/*")
 public class NoticeController {
 
 	@Autowired
 	private NoticeService noticeService;
 	
 	@RequestMapping("list")
-	public void list(Model model) {
+	public ModelAndView list(ModelAndView mv) {
 		List<NoticeDTO> ar = noticeService.getList();
-		model.addAttribute("list", ar);
+		mv.addObject("list", ar);
+		mv.setViewName("/board/list");
+		return mv;
+	
 	}
 	
 	@RequestMapping("select")
-	public void select(NoticeDTO noticeDTO, Model model) {
+	public ModelAndView select(NoticeDTO noticeDTO, ModelAndView mv) {
 		noticeDTO = noticeService.getSelect(noticeDTO);
-		model.addAttribute("dto", noticeDTO);
+		mv.addObject("dto", noticeDTO);
+		mv.setViewName("/board/select");
+		return mv;
+	}
+	
+	
+	  @RequestMapping(value="insert", method = RequestMethod.GET) 
+	  public ModelAndView insert(ModelAndView mv) {
+		  mv.setViewName("/board/insert");
+		  return mv;
+	  }
+	 
+	
+	@RequestMapping(value="insert", method = RequestMethod.POST)
+	public String insert(NoticeDTO noticeDTO) {
+		int result = noticeService.setInsert(noticeDTO);
+		
+		return "redirect: ./list";
+	}
+	
+	@RequestMapping("delete")
+	public String delete(Long num) {
+		int result =noticeService.setDelete(num);
+		
+		return "redirect: ./list";
 	}
 	
 }

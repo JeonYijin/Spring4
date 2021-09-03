@@ -38,7 +38,7 @@
 			
 			</table>
 		
-		
+			<a href="./insert" class="btn btn-danger">ADD</a>
 		
 		</div>
 	

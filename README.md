@@ -22,13 +22,18 @@ notice_seq
 
 3. 기능
 	1) List
-		/notice/list
+		/notice/list  get방식
 		/WEB-INF/views/board/list.jsp
 	2) 상세 페이지
-		/notice/select
-		/WEB-INF/views/board/select.jsp
+		/notice/select  - get방식
+		/WEB-INF/views/board/select.jsp 
 		파라미터로 num 넘기기
 	3) 글쓰기
+		/notice/insert - 메서드 형식 get방식
+		/WEB-INF/views/board/insert.jsp
+		/notice/insert 메서드 형식 post면 insert하고
+		/list 페이지로 이동
+		/title,contents,writer
 	4) 삭제
 	5) 수정
 4. 순서

@@ -19,4 +19,11 @@ public class NoticeService {
 		return noticeDAO.getSelect(noticeDTO);
 	}
 	
+	public int setInsert(NoticeDTO noticeDTO) {
+		return noticeDAO.setInsert(noticeDTO);
+	}
+	
+	public int setDelete(Long num) {
+		return noticeDAO.setDelete(num);
+	}
 }
