@@ -26,20 +26,20 @@ public class Pager {
 		}
 		
 		//3. 10개씩 page버튼 만들기 totalBlock
-		Long totalBlock = totalPage/10;
-		if(totalPage%10 !=0) {
+		Long totalBlock = totalPage/5;
+		if(totalPage%5 !=0) {
 			totalBlock++;
 		}
 		
 		//4. 현재 블럭 구하기
-		Long curBlock = this.getPn()/10;
-		if(this.getPn()%10 !=0) {
+		Long curBlock = this.getPn()/5;
+		if(this.getPn()%5 !=0) {
 			curBlock++;
 		}
 		
 		//5. curBlock으로 startNum, lastNum 구하기
-		this.startNum = (curBlock-1)*10+1;
-		this.lastNum = curBlock*10;
+		this.startNum = (curBlock-1)*5+1;
+		this.lastNum = curBlock*5;
 	}
 	
 	public Long getStartNum() {
