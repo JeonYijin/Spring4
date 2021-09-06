@@ -8,7 +8,22 @@
 	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
 		SELECT * FROM
 			(select ROWNUM R, NT.* FROM
-				(select * from notice order by num desc)
+				(select * from notice 
+				where 
+				<choose>
+					<when test="kind=='title'">
+						title
+					</when>
+					<when test="kind=='contents'">
+						contents
+					</when>
+					<otherwise>
+						writer
+					</otherwise>
+				</choose>
+				
+				like '%' || #{search}|| '%'
+				order by num desc)
 			NT)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
@@ -31,8 +46,22 @@
   		REGDATE=sysdate WHERE NUM=#{num}
   	</update>
 	
-	<select id="getCount" resultType="Long">
+	<select id="getCount" resultType="Long" parameterType="Pager">
 		SELECT COUNT(NUM) FROM NOTICE
+		where 
+				<choose>
+					<when test="kind=='title'">
+						title
+					</when>
+					<when test="kind=='contents'">
+						contents
+					</when>
+					<otherwise>
+						writer
+					</otherwise>
+				</choose>
+				
+				like '%' || #{search}|| '%'
 	</select>
   
   </mapper>

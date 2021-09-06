@@ -32,6 +32,7 @@ public class NoticeController {
 		
 		List<BoardDTO> ar =noticeService.getList(pager);
 		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
 		
 		return mv;
 	}

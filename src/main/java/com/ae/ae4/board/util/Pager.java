@@ -2,6 +2,9 @@ package com.ae.ae4.board.util;
 
 public class Pager {
 
+	private String kind;
+	private String search;
+	
 	private Long pn;
 	private Long perPage;
 	
@@ -32,7 +35,7 @@ public class Pager {
 		}
 		
 		if(totalPage<this.getPn()) {
-			this.setPn(totalBlock);
+			this.setPn(totalPage);
 		}
 		//4. curBlock 구하기
 		Long curBlock = this.getPn()/5;
@@ -49,12 +52,38 @@ public class Pager {
 		}
 	}
 	
+	
+	
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if(this.search==null) {
+			this.search="";
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public Long getTotalPage() {
+		return totalPage;
+	}
 	public Long getPn() {
 		if(this.pn==null|| this.pn<=0) {
 			this.pn=1L;
 		}
 		return pn;
 	}
+	
+
 	public void setPn(Long pn) {
 		this.pn = pn;
 	}
