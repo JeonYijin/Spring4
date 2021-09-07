@@ -7,6 +7,7 @@ public class Pager {
 	
 	private Long pn;
 	private Long perPage;
+	private Long perBlock;
 	
 	private Long startRow;
 	private Long lastRow;
@@ -29,24 +30,25 @@ public class Pager {
 			totalPage++;
 		}
 		//3. totalBlock 구하기
-		Long totalBlock = totalPage/5;
-		if(totalPage%5 !=0) {
+		Long totalBlock = totalPage/this.getPerBlock();
+		if(totalPage%this.getPerBlock() !=0) {
 			totalBlock++;
 		}
-		
+		//데이터가 끝난 후에 다음 페이지로 넘어가지 않게함
 		if(totalPage<this.getPn()) {
 			this.setPn(totalPage);
 		}
 		//4. curBlock 구하기
-		Long curBlock = this.getPn()/5;
-		if(this.getPn()%5 !=0) {
+		Long curBlock = this.getPn()/this.getPerBlock();
+		if(this.getPn()%this.getPerBlock() !=0) {
 			curBlock++;
 		}
 		//5. curBlock으로 startNum, lastNum 구하기
 		
-		this.startNum= (curBlock-1)*5+1;
-		this.lastNum = curBlock*5;
+		this.startNum= (curBlock-1)*this.getPerBlock()+1;
+		this.lastNum = curBlock*this.getPerBlock();
 		
+		//6. curBlock이 마지막 Block일때 lastNum 변경
 		if(curBlock==totalBlock) {
 			this.lastNum=totalPage;
 		}
@@ -54,6 +56,17 @@ public class Pager {
 	
 	
 	
+	public Long getPerBlock() {
+		if(this.perBlock == null || this.perBlock==0) {
+			this.perBlock=5L;
+		}
+		return perBlock;
+	}
+
+	public void setPerBlock(Long perBlock) {
+		this.perBlock = perBlock;
+	}
+
 	public String getKind() {
 		return kind;
 	}

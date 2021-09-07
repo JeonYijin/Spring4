@@ -22,26 +22,35 @@
 				</choose>
 				
 				like '%' || #{search}|| '%'
-				order by num desc)
+				order by REF desc, STEP ASC)
 			Q)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
 
 	<select id="getSelect"  parameterType="BoardDTO" resultType="QnaDTO" >
-  		SELECT * FROM NOTICE WHERE NUM=#{num}
+  		SELECT * FROM QNA WHERE NUM=#{num}
   	</select>
   
   	<insert id="setInsert" parameterType="BoardDTO">
-  		INSERT INTO NOTICE(NUM, TITLE, CONTENTS, WRITER)
-  		VALUES(NOTICE_SEQ.NEXTVAL, #{title}, #{contents}, #{writer})
+  		INSERT INTO QNA(NUM, TITLE, CONTENTS, WRITER,REF, STEP, DEPTH)
+  		VALUES(QNA_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, QNA_SEQ.CURRVAL,0,0)
   	</insert>
+  	<update id="setReplyUpdate" parameterType="QnaDTO">
+			update qna set step=step+1 where ref=#{ref} and step>#{step}
+		</update>
+  
+  	<insert id="setReply" parameterType="QnaDTO">
+			INSERT INTO QNA(NUM,TITLE,CONTENTS,WRITER,REGDATE,HITS, REF, STEP, DEPTH)
+			VALUES(QNA_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0, #{ref}, #{step}, #{depth})
+		</insert>
+
   
   	<delete id="setDelete" parameterType="BoardDTO">
-  		DELETE NOTICE WHERE NUM=#{num}
+  		DELETE QNA WHERE NUM=#{num}
   	</delete>
   
   	<update id="setUpdate" parameterType="BoardDTO">
-  		UPDATE NOTICE SET TITLE =#{title}, CONTENTS=#{contents}, WRITER=#{writer}, 
+  		UPDATE QNA SET TITLE =#{title}, CONTENTS=#{contents}, WRITER=#{writer}, 
   		REGDATE=sysdate WHERE NUM=#{num}
   	</update>
 
