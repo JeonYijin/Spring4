@@ -28,20 +28,20 @@
   	</select>
 
 	<select id="getSelect"  parameterType="BoardDTO" resultType="QnaDTO" >
-  		SELECT * FROM NOTICE WHERE NUM=#{num}
+  		SELECT * FROM QNA WHERE NUM=#{num}
   	</select>
   
   	<insert id="setInsert" parameterType="BoardDTO">
-  		INSERT INTO NOTICE(NUM, TITLE, CONTENTS, WRITER)
-  		VALUES(NOTICE_SEQ.NEXTVAL, #{title}, #{contents}, #{writer})
+  		INSERT INTO QNA(NUM, TITLE, CONTENTS, WRITER)
+  		VALUES(QNA_SEQ.NEXTVAL, #{title}, #{contents}, #{writer})
   	</insert>
   
   	<delete id="setDelete" parameterType="BoardDTO">
-  		DELETE NOTICE WHERE NUM=#{num}
+  		DELETE QNA WHERE NUM=#{num}
   	</delete>
   
   	<update id="setUpdate" parameterType="BoardDTO">
-  		UPDATE NOTICE SET TITLE =#{title}, CONTENTS=#{contents}, WRITER=#{writer}, 
+  		UPDATE QNA SET TITLE =#{title}, CONTENTS=#{contents}, WRITER=#{writer}, 
   		REGDATE=sysdate WHERE NUM=#{num}
   	</update>
 
