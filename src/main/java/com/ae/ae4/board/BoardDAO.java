@@ -9,6 +9,9 @@ public interface BoardDAO {
 	//전체갯수
 	public Long getCount(Pager pager) throws Exception;
 	
+	//조회수 업데이트
+	public int setHitUpdate(BoardDTO boardDTO)throws Exception;
+	
 	//List
 	public abstract List<BoardDTO> getList(Pager pager) throws Exception; 
 	

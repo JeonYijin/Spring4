@@ -13,10 +13,18 @@ import com.ae.ae4.board.util.Pager;
 @Repository
 public class QnaDAO implements BoardDAO {
 
+
 	@Autowired
 	private SqlSession sqlSession;
 	
 	private final String NAMESPACE = "com.ae.ae4.board.qna.QnaDAO.";
+	
+	
+	@Override
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAMESPACE+"setHitUpdate", boardDTO);
+	}
 	
 	@Override
 	public Long getCount(Pager pager) throws Exception {

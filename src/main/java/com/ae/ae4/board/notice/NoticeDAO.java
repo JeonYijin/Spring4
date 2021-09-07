@@ -18,6 +18,15 @@ public class NoticeDAO implements BoardDAO{
 	
 	private final String NAMESPACE="com.ae.ae4.board.notice.NoticeDAO.";
 	
+	
+	
+	
+	@Override
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAMESPACE+"setHitUpdate", boardDTO);
+	}
+
 	@Override
 	public Long getCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
