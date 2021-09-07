@@ -14,7 +14,7 @@
 
 	<div class="container-fluid">
 		<form class="col-md-6 mx-auto" action="./reply" method="post">
-			<input type="hidden" name ="num" vlaue="${param.num}">
+			<input type="hidden" name ="num" value="${param.num}">
 		<div class="mb-3">
 		  <label for="title" class="form-label">Title</label>
 		  <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요">
