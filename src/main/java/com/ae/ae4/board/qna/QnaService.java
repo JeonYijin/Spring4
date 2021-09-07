@@ -25,30 +25,41 @@ public class QnaService implements BoardService {
 
 	@Override
 	public BoardDTO getSelect(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		qnaDAO.setHitUpdate(boardDTO);
+		return qnaDAO.getSelect(boardDTO);
 	}
 
 	@Override
 	public int setInsert(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.setInsert(boardDTO);
 	}
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.setDelete(boardDTO);
 	}
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.setUpdate(boardDTO);
 	}
 
 	public int setReply(QnaDTO qnaDTO) throws Exception {
-		return 0;
+		//1. 부모 정보 조회
+		QnaDTO parent =(QnaDTO)qnaDAO.getSelect(qnaDTO);
+		qnaDTO.setRef(parent.getRef());
+		qnaDTO.setStep(parent.getStep()+1);
+		qnaDTO.setDepth(parent.getDepth()+1);
+		
+		//2. update
+		int result = qnaDAO.setReplyUpdate(qnaDTO);
+		
+		//3. insert
+		result =qnaDAO.setReply(qnaDTO);
+		return result;
 	}
 	
 }

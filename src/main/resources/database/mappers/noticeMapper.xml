@@ -64,4 +64,8 @@
 				like '%' || #{search}|| '%'
 	</select>
   
+  	<update id="setHitUpdate" parameterType="BoardDTO">
+  		update notice set hits= hits+1 where num=#{num}
+  	</update>
+  
   </mapper>
