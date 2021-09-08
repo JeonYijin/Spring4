@@ -38,6 +38,6 @@
 
 
 	</div>
-	<script type="text/javascript" src="./resources/js/boardCheck.js"></script>
+	<script type="text/javascript" src="../resources/js/boardCheck.js"></script>
 </body>
 </html>
