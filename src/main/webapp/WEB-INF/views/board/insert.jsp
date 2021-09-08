@@ -32,11 +32,12 @@
 		
 		
 		
-		<button type="submit" class="btn btn-success">ADD</button>
+		<button type="button" id = "b1" class="btn btn-success">ADD</button>
 		</form>
 
 
 
 	</div>
+	<script type="text/javascript" src="./resources/js/boardCheck.js"></script>
 </body>
 </html>
