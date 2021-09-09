@@ -13,7 +13,7 @@
           <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/notice/list">List</a>
+          <a class="nav-link" href="${pageContext.request.contextPath}/notice/list">Notice</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="${pageContext.request.contextPath}/qna/list">QnA</a>
