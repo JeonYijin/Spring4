@@ -9,7 +9,7 @@
 <c:import url="../temp/boot_head.jsp"></c:import>
 <style type="text/css">
 	.er{
-	color: blue;
+	color: red;
 	}
 </style>
 </head>
