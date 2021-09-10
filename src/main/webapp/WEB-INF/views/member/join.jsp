@@ -7,41 +7,51 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/boot_head.jsp"></c:import>
+<style type="text/css" >
+	.pw22{
+		color : red;
+	}
+</style>
 </head>
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>
 <h1>Join Page</h1>
-<div class="col-md-6 mx-auto">
-	<div class="input-group mb-3">
-	  <span class="input-group-text" id="inputGroup-sizing-default">아이디</span>
-	  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+<form class="col-md-5 mx-auto " id="frm" action="join" method="post" >
+	<div class="mb-3">
+	  <label for="exampleFormControlInput1" class="form-label">아이디</label>
+	  <input type="text" class="form-control not" id="id">
+	  <button id="idCheck" type="button">id 중복체크</button>
+	  <div id="idResult"></div>
 	</div>
 	
-	<div class="input-group mb-3 ">
-	  <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
-	  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-	</div>
-
-	<div class="input-group mb-3 ">
-	  <span class="input-group-text" id="inputGroup-sizing-default">비밀번호 확인</span>
-	  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-	</div>
-
-	<div class="input-group mb-3 ">
-	  <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
-	  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-	</div>
-		
-	<div class="input-group mb-3 ">
-	  <span class="input-group-text" id="inputGroup-sizing-default">전화번호</span>
-	  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+	<div class="mb-3">
+	  <label for="exampleFormControlInput1" class="form-label">비밀번호</label>
+	  <input type="text" class="form-control not pw" id="pw1">
 	</div>
 	
-	<div class="input-group mb-3 ">
-	  <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-	  <span class="input-group-text">@</span>
-	  <input type="text" class="form-control" placeholder="Server" aria-label="Server">
-	</div>	
-</div>
+	<div class="mb-3">
+	  <label for="exampleFormControlInput1" class="form-label">비밀번호 확인</label>
+	  <input type="text" class="form-control not pw" id="pw2" >
+	  <div class="pw22"></div>
+	</div>
+	
+	<div class="mb-3">
+	  <label for="exampleFormControlInput1" class="form-label">이름</label>
+	  <input type="text" class="form-control not " id="exampleFormControlInput1" >
+	</div>
+	
+	<div class="mb-3">
+	  <label for="exampleFormControlInput1" class="form-label">전화번호</label>
+	  <input type="tel" class="form-control not" id="exampleFormControlInput1" >
+	</div>
+	
+	<div class="mb-3">
+	  <label for="exampleFormControlInput1" class="form-label">이메일</label>
+	  <input type="email" class="form-control not" id="exampleFormControlInput1" placeholder="name@example.com">
+	</div>
+	<button id="btn" type="button">회원가입</button>
+</form>
+
+<script type="text/javascript" src="../resources/js/join.js"></script>
 </body>
 </html>

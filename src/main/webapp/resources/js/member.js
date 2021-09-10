@@ -18,7 +18,39 @@ btn.addEventListener('click', function(){
 });
 */
 
+btn.addEventListener('click', function(){
+	
+	let result = true;
+	for(let c of c2){
+		if(!c.checked){
+			result = false;
+			break;
+		}
+	}
+	
+	if(result){
+		location.href="./join";
+	}else{
+		alert('필수약관에 동의하세요')
+	}
+})
 
+
+
+
+//c2라고 필수약관만 클래스 따로 주기
+/*btn.addEventListener('click', function(){
+	for(let ch of c2){
+		if(ch.checked){
+			location.href="./join";
+		}else{
+			alert("필수약관을 동의하세요")
+		}
+	}
+	
+})*/
+
+/* id를 줬을 때 - 코드 너무 길어요..
 btn.addEventListener('click', function(){
 	if(all.checked){
 		location.href="./join";
@@ -31,7 +63,7 @@ btn.addEventListener('click', function(){
 	
 	
 	
-})
+})*/
 
 
 all.addEventListener('click',function(){
