@@ -22,7 +22,7 @@
 		
 		<div class="mb-3">
 		  <label for="writer" class="form-label">Writer</label>
-		  <input type="text" class="form-control" name="writer" id="writer" placeholder="작성자를 입력하세요">
+		  <input type="text" readonly="readonly" value="${member.id}" class="form-control" name="writer" id="writer" placeholder="작성자를 입력하세요">
 		</div>
 			
 		<div class="mb-3">

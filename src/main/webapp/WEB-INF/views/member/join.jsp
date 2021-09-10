@@ -19,14 +19,14 @@
 <form class="col-md-5 mx-auto " id="frm" action="join" method="post" >
 	<div class="mb-3">
 	  <label for="exampleFormControlInput1" class="form-label">아이디</label>
-	  <input type="text" class="form-control not" id="id">
+	  <input type="text" name= "id"class="form-control not" id="id">
 	  <button id="idCheck" type="button">id 중복체크</button>
 	  <div id="idResult"></div>
 	</div>
 	
 	<div class="mb-3">
 	  <label for="exampleFormControlInput1" class="form-label">비밀번호</label>
-	  <input type="text" class="form-control not pw" id="pw1">
+	  <input type="text" name="pw" class="form-control not pw" id="pw1">
 	</div>
 	
 	<div class="mb-3">
@@ -37,17 +37,17 @@
 	
 	<div class="mb-3">
 	  <label for="exampleFormControlInput1" class="form-label">이름</label>
-	  <input type="text" class="form-control not " id="exampleFormControlInput1" >
+	  <input type="text" name="name" class="form-control not " id="exampleFormControlInput1" >
 	</div>
 	
 	<div class="mb-3">
 	  <label for="exampleFormControlInput1" class="form-label">전화번호</label>
-	  <input type="tel" class="form-control not" id="exampleFormControlInput1" >
+	  <input type="tel" name="phone"class="form-control not" id="exampleFormControlInput1" >
 	</div>
 	
 	<div class="mb-3">
 	  <label for="exampleFormControlInput1" class="form-label">이메일</label>
-	  <input type="email" class="form-control not" id="exampleFormControlInput1" placeholder="name@example.com">
+	  <input type="email" name="email" class="form-control not" id="exampleFormControlInput1" placeholder="name@example.com">
 	</div>
 	<button id="btn" type="button">회원가입</button>
 </form>

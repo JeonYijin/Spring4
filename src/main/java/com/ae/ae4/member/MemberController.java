@@ -17,6 +17,33 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("delete")
+	public ModelAndView setDelete(MemberDTO memberDTO) throws Exception{
+		int result = memberService.setDelete(memberDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:../");
+		return mv;
+	}
+	
+	
+	
+	@GetMapping("myupdate")
+	public ModelAndView setUpdate(MemberDTO memberDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		memberDTO = memberService.getLogin(memberDTO);
+		mv.addObject("dto", memberDTO);
+		mv.setViewName("member/myupdate");
+		return mv;
+	}
+	
+	
+	@PostMapping("myupdate")
+	public ModelAndView setUpdate(MemberDTO memberDTO, ModelAndView mv) throws Exception {
+		int result = memberService.setUpdate(memberDTO);
+		mv.setViewName("redirect:./mypage");
+		return mv;
+	}
+	
 	@GetMapping("mypage")
 	public ModelAndView mypage() throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -85,10 +112,25 @@ public class MemberController {
 		return mv;
 	}
 	
+	/*
+	 * @GetMapping("join") public ModelAndView join()throws Exception{ ModelAndView
+	 * mv = new ModelAndView(); mv.setViewName("member/join"); return mv; }
+	 */
+	
 	@GetMapping("join")
-	public ModelAndView join()throws Exception{
+	public ModelAndView setInsert()throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/join");
 		return mv;
 	}
+	
+	@PostMapping("join")
+	public ModelAndView setInsert(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv= new ModelAndView();
+		
+		int result = memberService.setInsert(memberDTO);
+		mv.setViewName("redirect:../");
+		return mv;
+	}
+	
 }
