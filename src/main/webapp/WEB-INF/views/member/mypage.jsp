@@ -40,11 +40,11 @@
 	  <input type="email" readonly="readonly" value="${member.email}" name="email" class="form-control not" id="exampleFormControlInput1" placeholder="name@example.com">
 	</div>
 	<a href="./myupdate?id=${member.id}&pw=${pw}">회원정보수정</a>
-	<%-- <a id = "del" href="./delete?id=${member.id}">회원탈퇴</a> --%>
-	<button id= "del" type="button">회원탈퇴</button>
+	<a id = "del" href="./delete?id=${member.id}">회원탈퇴</a>
+	<!-- <button id= "del" type="button">회원탈퇴</button> -->
 </form>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	let del = document.getElementById('del');
 	let frm = document.getElementById('frm');
 	del.addEventListener('click', function(){
@@ -57,6 +57,6 @@
 	});
 	
 
-</script>
+</script> -->
 </body>
 </html>
