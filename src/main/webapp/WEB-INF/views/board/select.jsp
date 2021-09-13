@@ -34,8 +34,12 @@
 				</tr>
 
 			</table>
-			<a href="./delete?num=${dto.num}">DELETE</a>
-			<a href="./update?num=${dto.num}">UPDATE</a>
+			<c:if test="${not empty member and member.id eq dto.writer}">
+
+				<a href="./delete?num=${dto.num}">DELETE</a>
+				<a href="./update?num=${dto.num}">UPDATE</a>
+			
+			</c:if>
 			<c:if test="${board ne 'notice'}">
 				<a href="./reply?num=${dto.num}">REPLY</a>
 			</c:if>

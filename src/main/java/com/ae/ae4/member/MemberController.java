@@ -17,29 +17,45 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	/*
+	 * @GetMapping("delete") public ModelAndView setDelete(MemberDTO memberDTO)
+	 * throws Exception{ int result = memberService.setDelete(memberDTO);
+	 * ModelAndView mv = new ModelAndView(); mv.setViewName("redirect:../"); return
+	 * mv; }
+	 */
+	
 	@GetMapping("delete")
-	public ModelAndView setDelete(MemberDTO memberDTO) throws Exception{
+	public ModelAndView setDelete(HttpSession session) throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		int result = memberService.setDelete(memberDTO);
+		session.invalidate(); //또는 redirect를 로그아웃으로 보내기
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:../");
 		return mv;
 	}
 	
 	
-	
 	@GetMapping("myupdate")
 	public ModelAndView setUpdate(MemberDTO memberDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		memberDTO = memberService.getLogin(memberDTO);
-		mv.addObject("dto", memberDTO);
+		//mv.addObject("dto", memberDTO);
 		mv.setViewName("member/myupdate");
 		return mv;
 	}
 	
 	
 	@PostMapping("myupdate")
-	public ModelAndView setUpdate(MemberDTO memberDTO, ModelAndView mv) throws Exception {
+	public ModelAndView setUpdate(MemberDTO memberDTO, HttpSession session) throws Exception {
+		//수정전 데이터
+		MemberDTO sessionDTO = (MemberDTO)session.getAttribute("member");
+		//수정후 데이터
+		memberDTO.setId(sessionDTO.getId());
 		int result = memberService.setUpdate(memberDTO);
+		memberDTO.setName(sessionDTO.getName());
+		session.setAttribute("member", memberDTO);
+		
+		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:./mypage");
 		return mv;
 	}
@@ -129,7 +145,14 @@ public class MemberController {
 		ModelAndView mv= new ModelAndView();
 		
 		int result = memberService.setInsert(memberDTO);
-		mv.setViewName("redirect:../");
+		String message = "회원가입 실패";
+		if(result>0) {
+			message="회원가입 성공";
+		}
+		
+		mv.addObject("msg", message);
+		mv.addObject("url", "../");
+		mv.setViewName("common/result");
 		return mv;
 	}
 	

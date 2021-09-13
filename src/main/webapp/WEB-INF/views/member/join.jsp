@@ -31,7 +31,7 @@
 	
 	<div class="mb-3">
 	  <label for="exampleFormControlInput1" class="form-label">비밀번호 확인</label>
-	  <input type="text" class="form-control not pw" id="pw2" >
+	  <input type="text" name="pwCheck" class="form-control not pw" id="pw2" >
 	  <div class="pw22"></div>
 	</div>
 	

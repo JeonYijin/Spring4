@@ -19,7 +19,7 @@
  	</insert>
  
  	<update id="setUpdate" parameterType="MemberDTO">
- 		update member set pw=#{pw}, name=#{name}, phone=#{phone},email=#{email} where id=#{id}
+ 		update member set pw=#{pw}, phone=#{phone},email=#{email} where id=#{id}
  	</update>
  
  	<delete id="setDelete" parameterType="MemberDTO">

@@ -40,10 +40,22 @@
 	  <input type="email" readonly="readonly" value="${member.email}" name="email" class="form-control not" id="exampleFormControlInput1" placeholder="name@example.com">
 	</div>
 	<a href="./myupdate?id=${member.id}&pw=${pw}">회원정보수정</a>
-	<a id = "del" href="./delete?id=${member.id}">회원탈퇴</a>
+	<%-- <a id = "del" href="./delete?id=${member.id}">회원탈퇴</a> --%>
+	<a href="#" id="del">탈퇴</a>
 	<!-- <button id= "del" type="button">회원탈퇴</button> -->
 </form>
 
+<script type="text/javascript">
+/* const  del = document.getElementById('del'); */
+const del = document.querySelector("#del");
+ del.addEventListener('click', function(){
+	let result= confirm("정말로 탈퇴하시나요?");
+	if(result){
+		location.href="./delete";
+	}
+});
+
+</script>
 <!-- <script type="text/javascript">
 	let del = document.getElementById('del');
 	let frm = document.getElementById('frm');
