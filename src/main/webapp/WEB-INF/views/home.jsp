@@ -21,6 +21,13 @@
 	</c:if>
 	<h1>Conflict</h1>
 	
+	<button id="btn">Click</button>
+	<script type="text/javascript">
+		$("#btn").click(function(){
+			alert('hihi');
+		});
+	
+	</script>
 	
 </body>
 </html>

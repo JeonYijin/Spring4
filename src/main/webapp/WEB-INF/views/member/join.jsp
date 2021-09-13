@@ -11,6 +11,7 @@
 	.pw22{
 		color : red;
 	}
+
 </style>
 </head>
 <body>
@@ -49,9 +50,30 @@
 	  <label for="exampleFormControlInput1" class="form-label">이메일</label>
 	  <input type="email" name="email" class="form-control not" id="exampleFormControlInput1" placeholder="name@example.com">
 	</div>
-	<button id="btn" type="button">회원가입</button>
+	
+	<div class="mb-3" id="files">
+	 	<label class="form-label"></label>
+	 	<button id="add" type="button" class="btn btn-info">File Add</button>
+	</div>
+	<!-- input file 추가 영역 -->
+	
+	<div id= "addResult">
+	
+	
+	</div>
+	
+	<div class="mb-3 my-4">
+    	<label class="form-label"></label>
+  		<button id="btn" type="button" class="btn btn-primary">Join</button>
+  	</div>
+	
+	<!-- <button id="btn" type="button">회원가입</button> -->
 </form>
-
+	<div class="mb-3" id ="f">
+	  <label for="photo" class="form-label">Photo</label>
+	  <input type="file" name="photo" class="form-control not" id="photo"><br>
+	 </div>
 <script type="text/javascript" src="../resources/js/join.js"></script>
+<script type="text/javascript" src="../resources/js/file.js"></script>
 </body>
 </html>
