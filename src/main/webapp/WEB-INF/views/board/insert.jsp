@@ -30,13 +30,17 @@
 		  <input type="textarea" class="form-control" name="contents" id="contents" placeholder="내용을 입력하세요">
 		</div>
 		
+		<!-- 버튼 추가 -->
+		<button id="add" type="button">File ADD</button>
 		
+		<div id="file">
+		
+		</div>
 		
 		<button type="submit" class="btn btn-success">ADD</button>
 		</form>
 
-
-
 	</div>
+<script type="text/javascript" src="../resources/js/boardFile.js"></script>
 </body>
 </html>
