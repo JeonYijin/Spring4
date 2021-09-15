@@ -1,15 +1,29 @@
 package com.ae.ae4.board.util;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ae.ae4.board.BoardFilesDTO;
+
 @Component
 public class FileManager {
 
+	//파일 삭제하는 메서드 fileDelete만들기
+	public void fileDelete(List<BoardFilesDTO> ar, File file)throws Exception{
+		
+		for(BoardFilesDTO files : ar) {
+			 file = new File(file, files.getFileName());
+			file.delete();
+		}
+		
+	}
+	
+	
 	//fileSave 파일저장하는 메서드 만들기
 	//파일 저장하기
 	

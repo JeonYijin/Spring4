@@ -27,6 +27,17 @@ public class NoticeController {
 		return "notice";
 	}
 	
+	@GetMapping("delete")
+	public ModelAndView setDelete(BoardDTO boardDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setDelete(boardDTO);
+		
+		mv.setViewName("redirect:./list");
+		
+		return mv;
+		
+	}
+	
 	@GetMapping("select")
 	public ModelAndView getSelect(BoardDTO boardDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();

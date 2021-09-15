@@ -84,8 +84,20 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		String realPath = servletContext.getRealPath("/resources/upload/notice");
+		List<BoardFilesDTO> ar = noticeDAO.getFiles(boardDTO);
+		File file = new File(realPath);
+		
+		fileManager.fileDelete(ar, file);
+		
+//		
+//		for(BoardFilesDTO files : ar) {
+//			File file = new File(realPath, files.getFileName());
+//			file.delete();
+//		}
+		
+		return noticeDAO.setDelete(boardDTO);
 	}
 
 	@Override

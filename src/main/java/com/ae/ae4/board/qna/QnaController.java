@@ -27,6 +27,14 @@ public class QnaController {
 		return "qna";
 	}
 	
+	@GetMapping("delete")
+	public ModelAndView setDelete(BoardDTO boardDTO) throws Exception{
+		ModelAndView mv= new ModelAndView();
+		int result = qnaService.setDelete(boardDTO);
+		mv.setViewName("redirect:./list");
+		return mv;
+	}
+	
 	@PostMapping("reply")
 	public ModelAndView setReply(QnaDTO qnaDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
