@@ -6,14 +6,20 @@
 	<configuration>
 		<typeAliases>
 			<typeAlias type="com.ae.ae4.board.BoardDTO" alias="BoardDTO"/>
+			<typeAlias type="com.ae.ae4.board.BoardFilesDTO" alias="BoardFilesDTO"/>
+			
 			<typeAlias type="com.ae.ae4.board.notice.NoticeDTO" alias="NoticeDTO"/>
+			<typeAlias type="com.ae.ae4.board.notice.NoticeFilesDTO" alias="NoticeFilesDTO"/>
+			
 			<typeAlias type="java.lang.Long" alias="Long"/>
 			
 			<typeAlias type="com.ae.ae4.board.qna.QnaDTO" alias="QnaDTO"/>
 			<typeAlias type="com.ae.ae4.board.util.Pager" alias="Pager"/>
 			
 			<typeAlias type="com.ae.ae4.member.MemberDTO" alias="MemberDTO"/>
-						
+			<typeAlias type="com.ae.ae4.member.MemberFilesDTO" alias="MemberFilesDTO"/>		
+			
+			
 			
 		</typeAliases>
 	

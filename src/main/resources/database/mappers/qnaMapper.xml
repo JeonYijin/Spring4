@@ -4,6 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.ae.ae4.board.qna.QnaDAO">
+  
+  	<select id="getFiles" parameterType="BoardDTO" resultType="BoardFilesDTO">
+  		select * from qnaFiles where num = #{num}
+  	</select>
+  
+  	<insert id="setFile" parameterType="BoardDTO">
+  		insert into qnaFiles values(files_seq.nextval ,#{num},#{fileName}, #{oriName} )
+  	</insert>
+  
+  
   	<select id="getList" resultType="QnaDTO" parameterType="Pager">
   		SELECT * FROM
 			(select ROWNUM R, Q.* FROM
@@ -32,8 +42,11 @@
   	</select>
   
   	<insert id="setInsert" parameterType="BoardDTO">
+  		<selectKey order="BEFORE" resultType="Long" keyProperty="num">
+  			select qna_seq.nextval from dual
+  		</selectKey>
   		INSERT INTO QNA(NUM, TITLE, CONTENTS, WRITER,REF, STEP, DEPTH)
-  		VALUES(QNA_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, QNA_SEQ.CURRVAL,0,0)
+  		VALUES(#{num}, #{title}, #{contents}, #{writer}, QNA_SEQ.CURRVAL,0,0)
   	</insert>
   	<update id="setReplyUpdate" parameterType="QnaDTO">
 			update qna set step=step+1 where ref=#{ref} and step>#{step}

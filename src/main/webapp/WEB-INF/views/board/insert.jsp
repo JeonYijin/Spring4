@@ -7,13 +7,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/boot_head.jsp"></c:import>
+<style type="text/css">
+	#d1{
+		width: 300px;
+		height: 300px;
+		background-color: yellow; 
+	}
+</style>
 </head>
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>
 <h1>INSERT PAGE</h1>
 
 	<div class="container-fluid">
-		<form class="col-md-6 mx-auto" action="./insert" method="post">
+		<form class="col-md-6 mx-auto" action="./insert" method="post" enctype="multipart/form-data">
 			
 		<div class="mb-3">
 		  <label for="title" class="form-label">Title</label>
@@ -32,15 +39,30 @@
 		
 		<!-- 버튼 추가 -->
 		<button id="add" type="button">File ADD</button>
-		
+		<button type="button" class="del">DELETE</button>
 		<div id="file">
 		
 		</div>
 		
 		<button type="submit" class="btn btn-success">ADD</button>
 		</form>
-
+	
 	</div>
+	<div id="d1">
+		<button id="c1">Click</button>
+	</div>	
+
 <script type="text/javascript" src="../resources/js/boardFile.js"></script>
+<!-- js파일을 불러오는 script안에는 코드 금지 -->
+<script type="text/javascript">
+
+
+	$("#d1").click(function(){
+		alert('d1');
+	});
+	$("#c1").click(function() {
+		alert('c1');
+	});
+</script>
 </body>
 </html>

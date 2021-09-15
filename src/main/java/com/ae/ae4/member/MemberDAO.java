@@ -12,12 +12,20 @@ public class MemberDAO {
 	
 	private final String NAMESPACE="com.ae.ae4.member.MemberDAO.";
 	
+	public MemberFilesDTO getFile(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getFile", memberDTO);
+	}
+	
 	public MemberDTO getIdCheck(MemberDTO memberDTO) throws Exception {
 		return	sqlSession.selectOne(NAMESPACE+"getIdCheck", memberDTO );
 	}
 	
 	public MemberDTO getLogin(MemberDTO memberDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);
+	}
+	
+	public int setFileInsert(MemberFilesDTO memberFilesDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFileInsert", memberFilesDTO);
 	}
 	
 	

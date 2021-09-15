@@ -6,6 +6,14 @@ import com.ae.ae4.board.util.Pager;
 
 public interface BoardDAO {
 	
+	//file 보여주기
+	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception;
+	
+	
+	//file save
+	public int setFile(BoardFilesDTO boardFilesDTO)throws Exception;
+	
+	
 	//전체갯수
 	public Long getCount(Pager pager) throws Exception;
 	

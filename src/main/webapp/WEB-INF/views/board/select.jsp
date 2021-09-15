@@ -32,8 +32,15 @@
 					<td>${dto.hits}</td>
 
 				</tr>
-
+			
 			</table>
+			
+			<c:forEach items="${fileList}" var="f">
+				<div>
+					<img alt="" src="../resources/upload/${board}/${f.fileName}">	
+				</div>
+			</c:forEach>
+
 			<c:if test="${not empty member and member.id eq dto.writer}">
 
 				<a href="./delete?num=${dto.num}">DELETE</a>

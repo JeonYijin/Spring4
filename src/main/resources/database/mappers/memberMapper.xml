@@ -4,7 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  <mapper namespace="com.ae.ae4.member.MemberDAO">
- 
+ 	
+ 	<insert id="setFileInsert" parameterType="MemberFilesDTO">
+ 		insert into MEMBERFILES (num, id, filename, oriname)
+ 		values(files_seq.nextval, #{id}, #{fileName}, #{oriName})
+ 	</insert>
+ 	
  	<select id="getIdCheck" parameterType="MemberDTO" resultType="MemberDTO">
  		select id from member where id = #{id}
  	</select>
@@ -25,5 +30,9 @@
  	<delete id="setDelete" parameterType="MemberDTO">
  		delete member where id=#{id}
  	</delete>
+ 
+ 	<select id="getFile" parameterType="MemberDTO" resultType="MemberFilesDTO">
+ 		select * from MemberFiles where id = #{id}
+ 	</select>
  
  </mapper>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -27,6 +28,7 @@ public class MemberController {
 	@GetMapping("delete")
 	public ModelAndView setDelete(HttpSession session) throws Exception{
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
 		int result = memberService.setDelete(memberDTO);
 		session.invalidate(); //또는 redirect를 로그아웃으로 보내기
 		ModelAndView mv = new ModelAndView();
@@ -61,8 +63,11 @@ public class MemberController {
 	}
 	
 	@GetMapping("mypage")
-	public ModelAndView mypage() throws Exception {
+	public ModelAndView mypage(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		MemberFilesDTO memberFilesDTO = memberService.getFile(memberDTO);
+		mv.addObject("files", memberFilesDTO);
 		mv.setViewName("member/mypage");
 		return mv;
 	}
@@ -141,10 +146,11 @@ public class MemberController {
 	}
 	
 	@PostMapping("join")
-	public ModelAndView setInsert(MemberDTO memberDTO) throws Exception{
+	public ModelAndView setInsert(MemberDTO memberDTO, MultipartFile photo, HttpSession session) throws Exception{
 		ModelAndView mv= new ModelAndView();
+
+		int result = memberService.setInsert(memberDTO, photo,session);
 		
-		int result = memberService.setInsert(memberDTO);
 		String message = "회원가입 실패";
 		if(result>0) {
 			message="회원가입 성공";

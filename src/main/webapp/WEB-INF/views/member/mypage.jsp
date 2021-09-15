@@ -39,6 +39,10 @@
 	  <label for="exampleFormControlInput1" class="form-label">이메일</label>
 	  <input type="email" readonly="readonly" value="${member.email}" name="email" class="form-control not" id="exampleFormControlInput1" placeholder="name@example.com">
 	</div>
+	<div>
+		<img alt="" src="../resources/upload/member/${files.fileName}">
+	</div>
+	
 	<a href="./myupdate?id=${member.id}&pw=${pw}">회원정보수정</a>
 	<%-- <a id = "del" href="./delete?id=${member.id}">회원탈퇴</a> --%>
 	<a href="#" id="del">탈퇴</a>

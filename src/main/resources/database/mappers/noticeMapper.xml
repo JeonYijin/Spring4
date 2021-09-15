@@ -4,6 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.ae.ae4.board.notice.NoticeDAO">
+  
+  	<insert id="setFile" parameterType="BoardFilesDTO">
+  		insert into noticeFiles 
+  		values(files_seq.nextval, #{num},#{fileName}, #{oriName})
+  	</insert>
+  
 
 	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
 		SELECT * FROM
@@ -31,10 +37,17 @@
   	<select id="getSelect"  parameterType="BoardDTO" resultType="NoticeDTO" >
   		SELECT * FROM NOTICE WHERE NUM=#{num}
   	</select>
+  	
+	<select id="getFiles" parameterType="BoardDTO" resultType="BoardFilesDTO">
+		select * from noticeFiles where num=#{num}
+	</select>
   
   	<insert id="setInsert" parameterType="BoardDTO">
+  		<selectKey order="BEFORE" resultType="Long" keyProperty="num">
+  			select notice_seq.nextval from dual
+  		</selectKey>
   		INSERT INTO NOTICE(NUM, TITLE, CONTENTS, WRITER)
-  		VALUES(NOTICE_SEQ.NEXTVAL, #{title}, #{contents}, #{writer})
+  		VALUES(#{num}, #{title}, #{contents}, #{writer})
   	</insert>
   
   	<delete id="setDelete" parameterType="BoardDTO">

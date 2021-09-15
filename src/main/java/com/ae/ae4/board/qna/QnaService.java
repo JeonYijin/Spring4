@@ -1,12 +1,18 @@
 package com.ae.ae4.board.qna;
 
+import java.io.File;
 import java.util.List;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ae.ae4.board.BoardDTO;
+import com.ae.ae4.board.BoardFilesDTO;
 import com.ae.ae4.board.BoardService;
+import com.ae.ae4.board.util.FileManager;
 import com.ae.ae4.board.util.Pager;
 
 @Service
@@ -14,6 +20,11 @@ public class QnaService implements BoardService {
 
 	@Autowired
 	private QnaDAO qnaDAO;
+	
+	@Autowired
+	private ServletContext servletContext;
+	@Autowired
+	private FileManager fileManager;
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -23,6 +34,10 @@ public class QnaService implements BoardService {
 		return qnaDAO.getList(pager);
 	}
 
+	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception{
+		return qnaDAO.getFiles(boardDTO);
+	}
+	
 	@Override
 	public BoardDTO getSelect(BoardDTO boardDTO) throws Exception {
 		qnaDAO.setHitUpdate(boardDTO);
@@ -30,9 +45,26 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setInsert(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return qnaDAO.setInsert(boardDTO);
+	public int setInsert(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+		
+		//폴더명 /resources/upload/qna/
+		String realPath = servletContext.getRealPath("/resources/upload/qna");
+		System.out.println(realPath);
+		int result = qnaDAO.setInsert(boardDTO);
+		File file = new File(realPath);
+		
+		for(MultipartFile multipartFile: files) {
+			String fileName = fileManager.fileSave(multipartFile, file);
+			BoardFilesDTO boardFilesDTO = new BoardFilesDTO();
+			boardFilesDTO.setFileName(fileName);
+			boardFilesDTO.setOriName(multipartFile.getOriginalFilename());
+			boardFilesDTO.setNum(boardDTO.getNum());
+			
+			result = qnaDAO.setFile(boardFilesDTO);
+		}
+		
+		
+		return result;
 	}
 
 	@Override

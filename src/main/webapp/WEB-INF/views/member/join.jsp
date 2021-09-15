@@ -17,7 +17,7 @@
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>
 <h1>Join Page</h1>
-<form class="col-md-5 mx-auto " id="frm" action="join" method="post" >
+<form class="col-md-5 mx-auto " id="frm" action="join" method="post" enctype="multipart/form-data" >
 	<div class="mb-3">
 	  <label for="exampleFormControlInput1" class="form-label">아이디</label>
 	  <input type="text" name= "id"class="form-control not" id="id">
@@ -51,29 +51,21 @@
 	  <input type="email" name="email" class="form-control not" id="exampleFormControlInput1" placeholder="name@example.com">
 	</div>
 	
-	<div class="mb-3" id="files">
-	 	<label class="form-label"></label>
-	 	<button id="add" type="button" class="btn btn-info">File Add</button>
+	<div class="mb-3" id ="f">
+	  <label for="photo" class="form-label">Photo</label>
+	  <input type="file" name="photo" class="form-control not" id="photo"><br>
 	</div>
-	<!-- input file 추가 영역 -->
-	
-	<div id= "addResult">
-	
-	
-	</div>
+
 	
 	<div class="mb-3 my-4">
     	<label class="form-label"></label>
-  		<button id="btn" type="button" class="btn btn-primary">Join</button>
+  		<button id="btn" type="submit" class="btn btn-primary">Join</button>
   	</div>
 	
 	<!-- <button id="btn" type="button">회원가입</button> -->
 </form>
-	<div class="mb-3" id ="f">
-	  <label for="photo" class="form-label">Photo</label>
-	  <input type="file" name="photo" class="form-control not" id="photo"><br>
-	 </div>
-<script type="text/javascript" src="../resources/js/join.js"></script>
-<script type="text/javascript" src="../resources/js/file.js"></script>
+	
+<!-- <script type="text/javascript" src="../resources/js/join.js"></script>
+<script type="text/javascript" src="../resources/js/file.js"></script> -->
 </body>
 </html>
