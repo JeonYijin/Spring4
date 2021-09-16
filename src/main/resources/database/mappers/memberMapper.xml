@@ -4,6 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  <mapper namespace="com.ae.ae4.member.MemberDAO">
+ 	<resultMap type="MemberDTO" id="getLoginResult">
+ 		<id column="id" property="id"/>
+ 		<result column="pw" property="pw"/>
+ 		<result column="name" property="name"/>
+ 		<result column="phone" property="phone"/> 		
+ 		<result column="email" property="email"/>
+ 		<!-- 1:1관계 DTO내에 다른 DTO 하나가 멤버변수로 선언 -->
+ 		<association property="memberFilesDTO" javaType="MemberFilesDTO">
+ 			<id column="num" property="num"/>
+ 			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName" />
+ 		</association>
+ 	</resultMap>
+ 
+  	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
+		select *
+		from member m left join memberFiles mf
+		using (id)
+		where id = #{id} and pw=#{pw}
+
+ 	</select>
  	
  	<insert id="setFileInsert" parameterType="MemberFilesDTO">
  		insert into MEMBERFILES (num, id, filename, oriname)
@@ -13,10 +34,7 @@
  	<select id="getIdCheck" parameterType="MemberDTO" resultType="MemberDTO">
  		select id from member where id = #{id}
  	</select>
- 
- 	<select id="getLogin" parameterType="MemberDTO" resultType="MemberDTO">
- 		Select * from member where id =#{id} and pw=#{pw}
- 	</select>
+
  
  	<insert id="setInsert" parameterType="MemberDTO">
  		insert into member

@@ -40,7 +40,7 @@
 	  <input type="email" readonly="readonly" value="${member.email}" name="email" class="form-control not" id="exampleFormControlInput1" placeholder="name@example.com">
 	</div>
 	<div>
-		<img alt="" src="../resources/upload/member/${files.fileName}">
+		<img alt="" src="../resources/upload/member/${member.memberFilesDTO.fileName}">
 	</div>
 	
 	<a href="./myupdate?id=${member.id}&pw=${pw}">회원정보수정</a>

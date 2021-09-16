@@ -37,8 +37,33 @@
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
 
-	<select id="getSelect"  parameterType="BoardDTO" resultType="QnaDTO" >
-  		SELECT * FROM QNA WHERE NUM=#{num}
+	<resultMap type="QnaDTO" id="getSelectResult">
+		<id column="num" property="num"/>
+		<result column="title" property="title"/>
+		<result column="contents" property="contents"/>
+		<result column="writer" property="writer"/>
+		<result column="regdate" property="regDate"/>
+		<result column="hits" property="hits"/>
+		<result column="ref" property="ref"/>
+		<result column="step" property="step"/>
+		<result column="depth" property="depth"/>
+		
+		<collection property="files" javaType="List" ofType="BoardFilesDTO" resultMap="getFilesResult">
+		</collection>
+		
+	</resultMap>
+	<resultMap type="BoardFilesDTO" id="getFilesResult">
+					<id column="fileNum" property="fileNum"/>
+  			<result column="num" property="num"/>
+  			<result column="fileName" property="fileName"/>
+  			<result column="oriName" property="oriName"/>
+	</resultMap>
+
+	<select id="getSelect"  parameterType="BoardDTO" resultMap="getSelectResult" >
+  			select q.*, qf.*
+			from qna q left join qnaFiles qf
+			on (q.num = qf.num)
+			where q.num = #{num}
   	</select>
   
   	<insert id="setInsert" parameterType="BoardDTO">
