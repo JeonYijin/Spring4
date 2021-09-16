@@ -87,15 +87,15 @@ public class NoticeService implements BoardService {
 		
 		String realPath = servletContext.getRealPath("/resources/upload/notice");
 		List<BoardFilesDTO> ar = noticeDAO.getFiles(boardDTO);
-		File file = new File(realPath);
+		//File file = new File(realPath);
 		
-		fileManager.fileDelete(ar, file);
+		//fileManager.fileDelete(ar, file);
 		
-//		
-//		for(BoardFilesDTO files : ar) {
-//			File file = new File(realPath, files.getFileName());
-//			file.delete();
-//		}
+		
+		for(BoardFilesDTO files : ar) {
+			File file = new File(realPath, files.getFileName());
+			file.delete();
+		}
 		
 		return noticeDAO.setDelete(boardDTO);
 	}

@@ -31,8 +31,15 @@ public class NoticeController {
 	public ModelAndView setDelete(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = noticeService.setDelete(boardDTO);
+		String message = "Delete Fail";
 		
-		mv.setViewName("redirect:./list");
+		if(result>0) {
+			message = "Delete Sucess";
+		}
+		
+		mv.addObject("msg", message);
+		mv.addObject("url", "./list");
+		mv.setViewName("common/result");
 		
 		return mv;
 		

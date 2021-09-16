@@ -9,7 +9,7 @@
 			<typeAlias type="com.ae.ae4.board.BoardFilesDTO" alias="BoardFilesDTO"/>
 			
 			<typeAlias type="com.ae.ae4.board.notice.NoticeDTO" alias="NoticeDTO"/>
-			<typeAlias type="com.ae.ae4.board.notice.NoticeFilesDTO" alias="NoticeFilesDTO"/>
+			
 			
 			<typeAlias type="java.lang.Long" alias="Long"/>
 			
