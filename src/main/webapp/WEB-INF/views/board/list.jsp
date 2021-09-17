@@ -36,7 +36,7 @@
 				<tr>
 					<th>NUM</th>
 					<th>TITLE</th>
-					<th>CONTENTS</th>
+					
 					<th>WRITER</th>
 					<th>DATE</th>
 					<th>HITS</th>
@@ -52,7 +52,7 @@
 				</c:forEach>
 				</c:catch>
 				${dto.title}</a></td>
-				<td>${dto.contents}</td>
+				
 				<td>${dto.writer}</td>
 				<td>${dto.regDate}</td>
 				<td>${dto.hits}</td>

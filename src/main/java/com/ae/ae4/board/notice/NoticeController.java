@@ -27,6 +27,16 @@ public class NoticeController {
 		return "notice";
 	}
 	
+	@GetMapping("down")
+	public ModelAndView fileDown(BoardFilesDTO boardFilesDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("dto", boardFilesDTO);
+		mv.setViewName("fileDown");
+		
+		return mv;
+	}
+	
+	
 	@GetMapping("delete")
 	public ModelAndView setDelete(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();

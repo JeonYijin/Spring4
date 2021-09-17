@@ -35,7 +35,7 @@ public class FileManager {
 		
 		//3. 파일 이름
 		String fileName = UUID.randomUUID().toString();
-		fileName = fileName+"-"+multipartFile.getOriginalFilename();
+		fileName = fileName+"_"+multipartFile.getOriginalFilename();
 		//System.out.println(fileName);
 		
 		file = new File(file,fileName);
