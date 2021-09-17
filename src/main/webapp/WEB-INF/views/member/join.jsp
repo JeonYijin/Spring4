@@ -64,8 +64,8 @@
 	
 	<!-- <button id="btn" type="button">회원가입</button> -->
 </form>
-	
-<!-- <script type="text/javascript" src="../resources/js/join.js"></script>
-<script type="text/javascript" src="../resources/js/file.js"></script> -->
+
+<script type="text/javascript" src="../resources/js/join.js"></script>
+<script type="text/javascript" src="../resources/js/file.js"></script>
 </body>
 </html>

@@ -11,8 +11,9 @@
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>
 <h1>${board} SELECT PAGE</h1>
+
 	<div class="container-fluid">
-		<div class="col-md-6 mx-auto">
+		<div class="col-md-5">
 			<table class="table table-striped table-hover">
 			
 				<tr>
@@ -38,9 +39,27 @@
 			<c:forEach items="${dto.files}" var="f">
 				<div>
 					<a href="./down?fileName=${f.fileName}">${f.oriName}</a>
-					<%-- <img alt="" src="../resources/upload/${board}/${f.fileName}">	 --%>
 				</div>
 			</c:forEach>
+			<hr>
+			<div>
+				<div class="mb-6 mx-auto">
+				  <label for="writer" class="form-label">Writer</label>
+				  <input type="text" readonly="readonly" value="${member.id}" class="form-control" name="writer" id="writer" placeholder="작성자를 입력하세요">
+				</div>
+				
+				<div class="mb-6 mx-auto">
+				   <label for="contents" class="form-label">Contents</label>
+		  			<textarea class="form-control" cols=""  name="contents" id="contents" rows="6"></textarea>
+				  </div>	
+				
+				<button id="comment" type="button">write</button>
+				
+			</div>
+			
+			
+			<hr>
+			
 
 			<c:if test="${not empty member and member.id eq dto.writer}">
 
@@ -54,6 +73,16 @@
 			
 		</div>	
 	</div>
+<script type="text/javascript">
+	$('#comment').click(function(){
+		//작성자, 내용 콘솔에 출력
+		let contents = $('#contents').val();
+		let writer = $('#writer').val();
+		$.post('./comment',{num:'${dto.num}',writer:writer, contents:contents},function(result){
+			console.log(result.trim());
+		});
+	});
 
+</script>
 </body>
 </html>

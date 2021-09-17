@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ae.ae4.board.BoardDTO;
 import com.ae.ae4.board.BoardFilesDTO;
+import com.ae.ae4.board.CommentsDTO;
 import com.ae.ae4.board.util.Pager;
+import com.ae.ae4.member.MemberDTO;
 
 @Controller
 @RequestMapping("/notice/**")
@@ -26,6 +28,14 @@ public class NoticeController {
 	public String getBoard() {
 		return "notice";
 	}
+	
+	//setComment
+	@PostMapping("comment")
+	public void setComment(CommentsDTO commetsDTO)throws Exception{
+		commetsDTO.setBoard("N");
+		
+	}
+	
 	
 	@GetMapping("down")
 	public ModelAndView fileDown(BoardFilesDTO boardFilesDTO) throws Exception{
