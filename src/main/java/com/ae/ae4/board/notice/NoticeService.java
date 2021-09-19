@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ae.ae4.board.BoardDTO;
 import com.ae.ae4.board.BoardFilesDTO;
 import com.ae.ae4.board.BoardService;
+import com.ae.ae4.board.CommentsDTO;
 import com.ae.ae4.board.util.FileManager;
 import com.ae.ae4.board.util.Pager;
 
@@ -26,6 +27,23 @@ public class NoticeService implements BoardService {
 	private ServletContext servletContext;
 	@Autowired
 	private FileManager fileManager;
+	
+	public List<CommentsDTO> getComment(Pager pager) throws Exception{
+		//CommentsDTO commentsDTO = new CommentsDTO();
+		//commentsDTO.setNum(boardDTO.getNum());
+		Long countNum = noticeDAO.getCommentCount();
+		//pager.setPerPage(5L);
+		pager.makeNum(countNum);
+		pager.makeRow();
+		
+		return noticeDAO.getComment(pager);
+	}
+	
+	
+	public int setComment(CommentsDTO commentsDTO) throws Exception{
+		return noticeDAO.setComment(commentsDTO);
+	}
+	
 	
 	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception{
 		

@@ -42,6 +42,7 @@
 				</div>
 			</c:forEach>
 			<hr>
+			<!-- comment 입력 -->
 			<div>
 				<div class="mb-6 mx-auto">
 				  <label for="writer" class="form-label">Writer</label>
@@ -50,16 +51,60 @@
 				
 				<div class="mb-6 mx-auto">
 				   <label for="contents" class="form-label">Contents</label>
-		  			<textarea class="form-control" cols=""  name="contents" id="contents" rows="6"></textarea>
+		  			<textarea class="form-control" cols=""  name="contents" id="contents" rows="3"></textarea>
 				  </div>	
 				
 				<button id="comment" type="button">write</button>
 				
 			</div>
+			<!-- comment 출력 -->
+			<c:forEach items="${comment}" var="c">
+			<c:if test="${dto.num eq c.num}">
+			<div>
+				<div class=" mx-auto">
+				  <label for="writer" class="form-label">Writer</label>
+				  <input type="text" readonly="readonly" value="${c.writer}" class="form-control" name="writer" id="writer">
+				  <input type="text" readonly="readonly" value="${c.contents }" class="form-control" name="contents" id="contents">
+				</div>
+		
+			</div>
+			</c:if>
 			
-			
+			</c:forEach>
 			<hr>
 			
+			<!-- paging하는데 앞뒤 버튼 넣기 -->
+			<nav aria-label="Page navigation example">
+			<ul class="pagination">
+			    <li class="page-item">
+			      <a class="page-link" href="./select?num=${dto.num}" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    
+			     <li class="page-item">
+			      <a class="page-link" href="./select?pn=${pager.startNum-1}&num=${dto.num}" aria-label="Previous">
+			        <span aria-hidden="true">&lt;</span>
+			      </a>
+			    </li>
+			<!-- 버튼 사이에 반복될 페이지넘버 버튼 넣기 -->
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="n">
+				<li class="page-item"><a class="page-link" href="./select?pn=${n}&num=${dto.num}">${n}</a></li>
+			</c:forEach>
+			
+			<li class="page-item">
+			      <a class="page-link" href="./select?pn=${pager.lastNum+1}&num=${dto.num}" aria-label="Next">
+			        <span aria-hidden="true">&gt;</span>
+			      </a>
+			    </li>
+			    
+			    <li class="page-item">
+			      <a class="page-link" href="./select?pn=${pager.totalPage}&num=${dto.num}" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			 </ul>  
+		</nav>
 
 			<c:if test="${not empty member and member.id eq dto.writer}">
 
@@ -76,11 +121,20 @@
 <script type="text/javascript">
 	$('#comment').click(function(){
 		//작성자, 내용 콘솔에 출력
-		let contents = $('#contents').val();
+	 	let contents = $('#contents').val();
 		let writer = $('#writer').val();
-		$.post('./comment',{num:'${dto.num}',writer:writer, contents:contents},function(result){
+		let num = ${dto.num};
+		$.post('./comment',{num:num ,writer:writer, contents:contents},function(result){
+			result = result.trim();
+			console.log(result);
+			
+			
+		}); 
+		/* $.get('./comment?num='+num+'&writer='+writer+'&contents='+contents, function(result){
 			console.log(result.trim());
-		});
+			
+		}) */
+		
 	});
 
 </script>

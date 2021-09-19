@@ -4,6 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.ae.ae4.board.notice.NoticeDAO">
+  	<select id="getCommentCount" resultType="Long">
+  		select count(commentNum) from comments
+  	</select>
+  
+  	<select id="getComment" parameterType="Pager" resultType="CommentsDTO">
+  		select * from
+		    (select rownum r, cm.* from
+		        (select * from comments
+		        order by commentnum desc)
+		    cm)
+		where r between #{startRow} and #{lastRow}
+  	</select>
+  
+  	<insert id="setComment" parameterType="CommentsDTO">
+  			insert into comments(commentNum, num, writer, contents, regDate, board)
+  			values(comments_seq.nextval, #{num}, #{writer}, #{contents}, sysdate, #{board})
+  	</insert>
   
   	<insert id="setFile" parameterType="BoardFilesDTO">
   		insert into noticeFiles 

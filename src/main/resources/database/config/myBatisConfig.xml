@@ -20,7 +20,7 @@
 			<typeAlias type="com.ae.ae4.member.MemberDTO" alias="MemberDTO"/>
 			<typeAlias type="com.ae.ae4.member.MemberFilesDTO" alias="MemberFilesDTO"/>		
 			
-			
+			<typeAlias type="com.ae.ae4.board.CommentsDTO" alias="CommentsDTO"/>
 			
 		</typeAliases>
 	

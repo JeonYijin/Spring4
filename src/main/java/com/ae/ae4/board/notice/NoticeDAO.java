@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ae.ae4.board.BoardDAO;
 import com.ae.ae4.board.BoardDTO;
 import com.ae.ae4.board.BoardFilesDTO;
+import com.ae.ae4.board.CommentsDTO;
 import com.ae.ae4.board.util.Pager;
 
 @Repository
@@ -18,6 +19,18 @@ public class NoticeDAO implements BoardDAO{
 	private SqlSession sqlSession;
 	
 	private final String NAMESPACE="com.ae.ae4.board.notice.NoticeDAO.";
+	
+	public Long getCommentCount() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCommentCount");
+	}
+	
+	public List<CommentsDTO> getComment(Pager pager) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getComment", pager);
+	}
+	
+	public int setComment(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setComment", commentsDTO);
+	}
 	
 	@Override
 	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception {
