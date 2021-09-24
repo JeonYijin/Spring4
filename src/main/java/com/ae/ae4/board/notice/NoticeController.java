@@ -28,13 +28,44 @@ public class NoticeController {
 	public String getBoard() {
 		return "notice";
 	}
-	@GetMapping("comment")
-	public ModelAndView setComment(CommentsDTO commentsDTO, ModelAndView mv,Pager pager) throws Exception{
+	
+	@PostMapping("commentUpdate")
+	public ModelAndView setCommentUpdate(CommentsDTO commentsDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		
-		List<CommentsDTO> ar = noticeService.getComment(pager);
-		mv.addObject("comment", ar );
-		mv.setViewName("board/select");
-		//mv.setViewName("redirect:./select");
+		int result = noticeService.setCommentUpdate(commentsDTO);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		return mv;
+	}
+	
+	@PostMapping("commentDel")
+	public ModelAndView setDeleteComment(CommentsDTO commentsDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setCommentDelete(commentsDTO);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		return mv;
+	}
+	
+//	@GetMapping("comment")
+//	public ModelAndView setComment(CommentsDTO commentsDTO, ModelAndView mv,Pager pager) throws Exception{
+//		
+//		List<CommentsDTO> ar = noticeService.getComment(commentsDTO);
+//		mv.addObject("comment", ar );
+//		mv.setViewName("board/select");
+//		//mv.setViewName("redirect:./select");
+//		return mv;
+//	}
+	
+	@GetMapping("getCommentList")
+	public ModelAndView getCommentList(CommentsDTO commentsDTO, Pager pager)throws Exception{
+		commentsDTO.setBoard("N");
+		List<CommentsDTO> ar = noticeService.getComment(commentsDTO, pager);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("comments", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/ajaxList");
 		return mv;
 	}
 	
@@ -44,10 +75,14 @@ public class NoticeController {
 		commentsDTO.setBoard("N");
 		ModelAndView mv = new ModelAndView();
 		int result = noticeService.setComment(commentsDTO);
-		System.out.println(result);
-		mv.setViewName("board/select");
-		System.out.println(commentsDTO.getNum());
-		System.out.println(commentsDTO.getWriter());
+		//System.out.println(result);
+		
+		//mv.setViewName("board/select");
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		
+		//System.out.println(commentsDTO.getNum());
+		//System.out.println(commentsDTO.getWriter());
 		return mv;
 	}
 	
@@ -86,9 +121,9 @@ public class NoticeController {
 		boardDTO = noticeService.getSelect(boardDTO);
 		//List<BoardFilesDTO> ar = noticeService.getFiles(boardDTO);
 		//mv.addObject("fileList", ar);
-		List<CommentsDTO> ar = noticeService.getComment(pager);
-		mv.addObject("pager", pager);
-		mv.addObject("comment", ar );
+//		List<CommentsDTO> ar = noticeService.getComment(pager);
+//		mv.addObject("pager", pager);
+//		mv.addObject("comment", ar );
 		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/select");
 		return mv;

@@ -5,6 +5,27 @@
   
   <mapper namespace="com.ae.ae4.board.qna.QnaDAO">
   
+  <select id="getCommentCount" resultType="Long" parameterType="CommentsDTO">
+  		select count(commentNum) from comments
+  		where board=#{board} and num=#{num}
+  	</select>
+  
+  
+  <select id="getComment"  resultType="CommentsDTO" parameterType="Map">
+  		select * from
+	  		(select rownum r, c.* from
+	  			  (select * from comments 
+	  			  where board=#{comments.board} and num=#{comments.num} 
+	  			  order by commentnum desc) c)
+	  	where r between #{pager.startRow} and #{pager.lastRow}
+  			  
+  	</select>
+  
+  <insert id="setComment" parameterType="CommentsDTO">
+  			insert into comments(commentNum, num, writer, contents, regDate, board)
+  			values(comments_seq.nextval, #{num}, #{writer}, #{contents}, sysdate, #{board})
+  	</insert>
+  
   	<select id="getFiles" parameterType="BoardDTO" resultType="BoardFilesDTO">
   		select * from qnaFiles where num = #{num}
   	</select>

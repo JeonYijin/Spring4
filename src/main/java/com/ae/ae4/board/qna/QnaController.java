@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ae.ae4.board.BoardDTO;
 import com.ae.ae4.board.BoardFilesDTO;
+import com.ae.ae4.board.CommentsDTO;
 import com.ae.ae4.board.util.Pager;
 
 @Controller
@@ -26,6 +27,32 @@ public class QnaController {
 	public String getBoard() {
 		return "qna";
 	}
+	
+	@GetMapping("getCommentList")
+	public ModelAndView getCommentList(CommentsDTO commentsDTO, Pager pager)throws Exception{
+		commentsDTO.setBoard("Q");
+		List<CommentsDTO> ar = qnaService.getComment(commentsDTO, pager);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("comments", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/ajaxList");
+		return mv;
+	}
+	
+	//setComment
+		@PostMapping("comment")
+		public ModelAndView setComment(CommentsDTO commentsDTO)throws Exception{
+			commentsDTO.setBoard("Q");
+			ModelAndView mv = new ModelAndView();
+			int result = qnaService.setComment(commentsDTO);
+
+			mv.setViewName("common/ajaxResult");
+			mv.addObject("result", result);
+
+			return mv;
+		}
+	
+	
 	
 	@GetMapping("delete")
 	public ModelAndView setDelete(BoardDTO boardDTO) throws Exception{

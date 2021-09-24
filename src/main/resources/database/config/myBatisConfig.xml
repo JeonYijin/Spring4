@@ -14,6 +14,7 @@
 			<typeAlias type="java.lang.Long" alias="Long"/>
 			<typeAlias type="java.util.List" alias="List"/>
 			
+			
 			<typeAlias type="com.ae.ae4.board.qna.QnaDTO" alias="QnaDTO"/>
 			<typeAlias type="com.ae.ae4.board.util.Pager" alias="Pager"/>
 			
@@ -21,7 +22,7 @@
 			<typeAlias type="com.ae.ae4.member.MemberFilesDTO" alias="MemberFilesDTO"/>		
 			
 			<typeAlias type="com.ae.ae4.board.CommentsDTO" alias="CommentsDTO"/>
-			
+			<typeAlias type="java.util.Map" alias="Map"/>
 		</typeAliases>
 	
 	

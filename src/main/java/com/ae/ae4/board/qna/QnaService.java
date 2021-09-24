@@ -1,6 +1,7 @@
 package com.ae.ae4.board.qna;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ae.ae4.board.BoardDTO;
 import com.ae.ae4.board.BoardFilesDTO;
 import com.ae.ae4.board.BoardService;
+import com.ae.ae4.board.CommentsDTO;
 import com.ae.ae4.board.util.FileManager;
 import com.ae.ae4.board.util.Pager;
 
@@ -25,6 +27,27 @@ public class QnaService implements BoardService {
 	private ServletContext servletContext;
 	@Autowired
 	private FileManager fileManager;
+	
+	public List<CommentsDTO> getComment(CommentsDTO commentsDTO, Pager pager) throws Exception{
+		
+		
+		pager.setPerPage(5L);
+		pager.makeRow();
+		//전체 댓글의 갯수
+		Long count = qnaDAO.getCommentCount(commentsDTO);
+		pager.makeNum(count);
+		System.out.println(count);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("comments", commentsDTO);
+		map.put("pager", pager);
+		return qnaDAO.getComment(map);
+	}
+	
+	
+	
+	public int setComment(CommentsDTO commentsDTO) throws Exception{
+		return qnaDAO.setComment(commentsDTO);
+	}
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {

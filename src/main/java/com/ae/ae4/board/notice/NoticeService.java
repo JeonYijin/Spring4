@@ -1,10 +1,12 @@
 package com.ae.ae4.board.notice;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,15 +30,27 @@ public class NoticeService implements BoardService {
 	@Autowired
 	private FileManager fileManager;
 	
-	public List<CommentsDTO> getComment(Pager pager) throws Exception{
-		//CommentsDTO commentsDTO = new CommentsDTO();
-		//commentsDTO.setNum(boardDTO.getNum());
-		Long countNum = noticeDAO.getCommentCount();
-		//pager.setPerPage(5L);
-		pager.makeNum(countNum);
-		pager.makeRow();
+	public int setCommentUpdate(CommentsDTO commentsDTO) throws Exception{
+		return noticeDAO.setCommentUpdate(commentsDTO);
+	}
+	
+	public int setCommentDelete(CommentsDTO commentsDTO) throws Exception{
+		return noticeDAO.setCommentDelete(commentsDTO);
+	}
+	
+	public List<CommentsDTO> getComment(CommentsDTO commentsDTO, Pager pager) throws Exception{
 		
-		return noticeDAO.getComment(pager);
+		
+		pager.setPerPage(5L);
+		pager.makeRow();
+		//전체 댓글의 갯수
+		Long count = noticeDAO.getCommentCount(commentsDTO);
+		pager.makeNum(count);
+		//System.out.println(count);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("comments", commentsDTO);
+		map.put("pager", pager);
+		return noticeDAO.getComment(map);
 	}
 	
 	

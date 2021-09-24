@@ -1,6 +1,7 @@
 package com.ae.ae4.board.notice;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +21,22 @@ public class NoticeDAO implements BoardDAO{
 	
 	private final String NAMESPACE="com.ae.ae4.board.notice.NoticeDAO.";
 	
-	public Long getCommentCount() throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getCommentCount");
+	public int setCommentUpdate(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setCommentUpdate", commentsDTO);
 	}
 	
-	public List<CommentsDTO> getComment(Pager pager) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getComment", pager);
+	public int setCommentDelete(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setCommentDelete", commentsDTO);
 	}
 	
+	public Long getCommentCount(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCommentCount", commentsDTO);
+	}
+	
+	public List<CommentsDTO> getComment(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getComment",map);
+	}
+	//BoardDAO 선언하고 오버라이딩 - QNA에 함께 사용
 	public int setComment(CommentsDTO commentsDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setComment", commentsDTO);
 	}

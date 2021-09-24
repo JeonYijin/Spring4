@@ -4,17 +4,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.ae.ae4.board.notice.NoticeDAO">
-  	<select id="getCommentCount" resultType="Long">
+  
+  	<update id="setCommentUpdate" parameterType="CommentsDTO">
+  		update comments set contents = #{contents}
+  		 where commentNum = #{commentNum}
+  	</update>
+  
+	  <delete id="setCommentDelete" parameterType="CommentsDTO">
+	  	delete comments where commentNum = #{commentNum}
+	  </delete>
+  
+  	<select id="getCommentCount" resultType="Long" parameterType="CommentsDTO">
   		select count(commentNum) from comments
+  		where board=#{board} and num=#{num}
   	</select>
   
-  	<select id="getComment" parameterType="Pager" resultType="CommentsDTO">
+  	<select id="getComment"  resultType="CommentsDTO" parameterType="Map">
   		select * from
-		    (select rownum r, cm.* from
-		        (select * from comments
-		        order by commentnum desc)
-		    cm)
-		where r between #{startRow} and #{lastRow}
+	  		(select rownum r, c.* from
+	  			  (select * from comments 
+	  			  where board=#{comments.board} and num=#{comments.num} 
+	  			  order by commentnum desc) c)
+	  	where r between #{pager.startRow} and #{pager.lastRow}
+  			  
   	</select>
   
   	<insert id="setComment" parameterType="CommentsDTO">

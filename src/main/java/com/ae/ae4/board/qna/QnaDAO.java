@@ -1,6 +1,7 @@
 package com.ae.ae4.board.qna;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.ae.ae4.board.BoardDAO;
 import com.ae.ae4.board.BoardDTO;
 import com.ae.ae4.board.BoardFilesDTO;
+import com.ae.ae4.board.CommentsDTO;
 import com.ae.ae4.board.util.Pager;
 
 @Repository
@@ -19,6 +21,18 @@ public class QnaDAO implements BoardDAO {
 	private SqlSession sqlSession;
 	
 	private final String NAMESPACE = "com.ae.ae4.board.qna.QnaDAO.";
+	
+	public Long getCommentCount(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCommentCount", commentsDTO);
+	}
+	
+	public List<CommentsDTO> getComment(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getComment",map);
+	}
+	
+	public int setComment(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setComment", commentsDTO);
+	}
 	
 	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getFiles", boardDTO);
