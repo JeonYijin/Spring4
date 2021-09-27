@@ -20,22 +20,45 @@
 		<h3>Login 하기 전 보이는 문장</h3>
 	</c:if>
 	<h1>Conflict</h1>
-	
-	
-	<h1 id="ar"></h1>
-	
+
 	<button id="btn">Click</button>
-	<script type="text/javascript">
-	
-		$("#btn").click(function(){
-			$.get("./ajax/t1?num=1", function (result) {
-				console.log(result.trim());
-				$('#ar').html(result.trim());
-			});
+	<div>
+		<table id="r" class="table table-hover">
+			<tr>
+				<td>ID</td>
+				<td>TITLE</td>
+				<td>USERID</td>
+			</tr>
+				
 		
+		</table>
+	</div>
+	<script type="text/javascript">
+		$('#btn').click(function(){
+			$.ajax({
+				type:"GET",
+				url:"http://jsonplaceholder.typicode.com/posts",
+				success:function(result){
+					console.log(result);
+					console.log(result[0]);
+					console.log(result[0].title);
+					
+					for(v1 of result){
+						let title = v1.title;
+						let id = v1.id;
+						let userid = v1.userId;
+						
+						$('#r').append('<tr><td>'+id+'</td><td>'+title+'</td><td>'+userid+'</td></tr>');
+						
+					}
+					
+				}
+				
+			});
 		});
 	
 	</script>
+
 	
 </body>
 </html>
