@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +20,7 @@ import com.ae.ae4.board.util.Pager;
 import com.ae.ae4.member.MemberDTO;
 
 @Controller
+//@RestController - 모든 메서드에 responsebody가 들어가있음
 @RequestMapping("/notice/**")
 public class NoticeController {
 	
@@ -87,31 +90,32 @@ public class NoticeController {
 //	}
 	
 	@GetMapping("getCommentList")
-	public ModelAndView getCommentList(CommentsDTO commentsDTO, Pager pager)throws Exception{
+	@ResponseBody
+	public List<CommentsDTO> getCommentList(CommentsDTO commentsDTO, Pager pager)throws Exception{
 		commentsDTO.setBoard("N");
 		List<CommentsDTO> ar = noticeService.getComment(commentsDTO, pager);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("comments", ar);
-		mv.addObject("pager", pager);
-		mv.setViewName("common/ajaxList");
-		return mv;
+		//mv.addObject("comments", ar);
+		//mv.addObject("pager", pager);
+		//mv.setViewName("common/ajaxList");
+		return ar;
 	}
 	
 	//setComment
 	@PostMapping("comment")
-	public ModelAndView setComment(CommentsDTO commentsDTO)throws Exception{
+	@ResponseBody
+	public int setComment(CommentsDTO commentsDTO)throws Exception{
 		commentsDTO.setBoard("N");
 		ModelAndView mv = new ModelAndView();
 		int result = noticeService.setComment(commentsDTO);
-		//System.out.println(result);
+//		String json = "{";
+//		json = json+"result:"+"\""+result+"\"}";
 		
-		//mv.setViewName("board/select");
+		
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result", result);
-		
-		//System.out.println(commentsDTO.getNum());
-		//System.out.println(commentsDTO.getWriter());
-		return mv;
+
+		return result;
 	}
 	
 	
