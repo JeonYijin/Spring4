@@ -139,10 +139,10 @@
 				if(result.trim()>0){
 					alert('성공');
 					//getCommentList(1);
-					$(this).parent().children('div').text(contents);
-					$(this).parent().children('div').css('display','block');
-					$(this).parent().children('textarea').remove();
-					$(this).parent().children('button').remove(); 
+					selector.parent().children('div').text(contents);
+					selector.parent().children('div').css('display','block');
+					selector.parent().children('textarea').remove();
+					selector.parent().children('button').remove(); 
 				}else{
 					alert('실패');
 				}

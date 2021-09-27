@@ -14,13 +14,9 @@ import com.ae.ae4.board.BoardFilesDTO;
 public class FileManager {
 
 	//파일 삭제하는 메서드 fileDelete만들기
-	public void fileDelete(List<BoardFilesDTO> ar, File file)throws Exception{
+public void fileDelete(File file)throws Exception{
 		
-		for(BoardFilesDTO files : ar) {
-			 file = new File(file, files.getFileName());
-			file.delete();
-		}
-		
+		file.delete();
 	}
 	
 	

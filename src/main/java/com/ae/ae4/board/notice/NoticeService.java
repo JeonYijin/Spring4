@@ -57,7 +57,13 @@ public class NoticeService implements BoardService {
 	public int setComment(CommentsDTO commentsDTO) throws Exception{
 		return noticeDAO.setComment(commentsDTO);
 	}
-	
+	public int setFileDelete(BoardFilesDTO boardFilesDTO)throws Exception{
+		//폴더에서 파일 삭제
+		String realPath = servletContext.getRealPath("/resources/upload/notice/");
+		File file = new File(realPath, boardFilesDTO.getFileName());
+		fileManager.fileDelete(file);
+		return noticeDAO.setFileDelete(boardFilesDTO);
+	}
 	
 	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception{
 		
@@ -133,9 +139,22 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+
+		String realPath = servletContext.getRealPath("/resources/upload/notice/");
+		File file = new File(realPath);
+		int result = noticeDAO.setUpdate(boardDTO);
+		for(MultipartFile multipartFile: files) {
+			String fileName = fileManager.fileSave(multipartFile, file);
+			BoardFilesDTO boardFilesDTO = new BoardFilesDTO();
+			boardFilesDTO.setFileName(fileName);
+			boardFilesDTO.setOriName(multipartFile.getOriginalFilename());
+			boardFilesDTO.setNum(boardDTO.getNum());
+			
+			result = noticeDAO.setFile(boardFilesDTO);
+		}
+		
+		return result;
 	}
 
 }

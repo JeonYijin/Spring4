@@ -29,6 +29,34 @@ public class NoticeController {
 		return "notice";
 	}
 	
+	@PostMapping("fileDelete")
+	public ModelAndView setFileDelete(BoardFilesDTO boardFilesDTO) throws Exception{
+		int result = noticeService.setFileDelete(boardFilesDTO);
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		return mv;
+	}
+	
+	public ModelAndView setUpdate(BoardDTO boardDTO, MultipartFile[] files) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setUpdate(boardDTO, files);
+		mv.setViewName("./select");
+		
+		return mv;
+	}
+	
+	@GetMapping("update")
+	public ModelAndView setUpdate(BoardDTO boardDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		boardDTO = noticeService.getSelect(boardDTO);
+		mv.addObject("dto", boardDTO);
+		mv.setViewName("board/update");
+		
+		return mv;
+	}
+	
 	@PostMapping("commentUpdate")
 	public ModelAndView setCommentUpdate(CommentsDTO commentsDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();

@@ -41,6 +41,10 @@ public class NoticeDAO implements BoardDAO{
 		return sqlSession.insert(NAMESPACE+"setComment", commentsDTO);
 	}
 	
+	public int setFileDelete(BoardFilesDTO boardFilesDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"setFileDelete", boardFilesDTO);
+	}
+	
 	@Override
 	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -91,7 +95,7 @@ public class NoticeDAO implements BoardDAO{
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(NAMESPACE+"setUpdate", boardDTO);
 	}
 	
 	
