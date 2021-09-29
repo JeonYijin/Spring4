@@ -3,6 +3,7 @@ package com.ae.ae4.board.notice;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -76,6 +77,12 @@ public class NoticeService implements BoardService {
 		Long totalCount = noticeDAO.getCount(pager);
 		pager.makeNum(totalCount);
 		pager.makeRow();
+		
+		Random random = new Random();
+		if(random.nextInt(2)==0) {
+			throw new Exception();
+		}
+		
 		return noticeDAO.getList(pager);
 	}
 

@@ -14,6 +14,17 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
+	<!-- Client Error 처리 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/error/frontError.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/error/error400</location>
+	</error-page>
+	
+	
 	<!-- Encoding Filter -->
 	<filter>
 		<filter-name>encode</filter-name>
