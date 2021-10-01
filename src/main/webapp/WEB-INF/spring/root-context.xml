@@ -29,5 +29,6 @@
 			<!-- 전체 파일의 크기 -->
 			<property name="maxUploadSize" value="52428800"></property>
 		</bean>
+		
 	
 </beans>

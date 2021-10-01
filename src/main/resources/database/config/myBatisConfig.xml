@@ -6,6 +6,7 @@
 	<configuration>
 		<typeAliases>
 			<typeAlias type="com.ae.ae4.board.BoardDTO" alias="BoardDTO"/>
+			
 			<typeAlias type="com.ae.ae4.board.BoardFilesDTO" alias="BoardFilesDTO"/>
 			
 			<typeAlias type="com.ae.ae4.board.notice.NoticeDTO" alias="NoticeDTO"/>
